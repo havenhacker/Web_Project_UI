@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FaceBookLogin</title>
+    <link rel="icon" href="timg.jpg">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+            <!--$('#circleContent').carousel({interval:5000});//每隔5秒自动轮播-->
+        <!--});-->
+    <!--</script>-->
+    <style>
+        body{
+            padding-top: 30px;
+        }
+        #login_form{
+            display: block;
+        }
+        #register_form{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a><img src="timg.jpg" style="width: 15px;height: 15px;position: absolute; top: 16px; left: 0px; "></a>
+            <a class="navbar-brand" >Facebook</a>
+        </div>
+        <!--<div>-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li id="li1"><a href="">News</a></li>-->
+                <!--<li id="li2"><a href="">Feed</a></li>-->
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                        <!--Partner Sites-->
+                        <!--<b class="caret"></b>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="http://www.youtube.com/">Youtube</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="http://instagram.com/">Instagram</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="https://www.whatsapp.com/">Whats' app</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="https://www.google.com.hk/">Google Search</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+</nav>
+
+<div style=" position: absolute; width: 100%; height: 100%; z-index: 1;">
+    <!--background video-->
+    <div  style="width: 100%; height: 100%;  position: absolute; z-index: 3; ">
+        <video autoplay loop id="bgvideo" muted width="1580">
+            <source src="backgroundvideo.mp4" type="video/mp4">
+        </video>
+        <!--carousel slide-->
+        <!--id="circleContent" class="carousel slide"-->
+        <!--<ol class="carousel-indicators">-->
+        <!--<li data-target="#circleContent" data-slide-to="0" class="active"></li>-->
+        <!--<li data-target="#circleContent" data-slide-to="1"></li>-->
+        <!--<li data-target="#circleContent" data-slide-to="2"></li>-->
+        <!--</ol>-->
+        <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+        <!--<img src="log1.jpg" style="position: relative;  height: 682px;">-->
+        <!--&lt;!&ndash;<div class="carousel-caption">IMG1</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="item">-->
+        <!--<img src="log2.jpg" style="position: relative; width: 1920px; height: 682px;" />-->
+        <!--</div>-->
+        <!--<div class="item">-->
+        <!--<img src="log3.jpg" style="position: relative; width: 1920px; height: 682px;" />-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<a class="carousel-control left" href="#circleContent" data-slide="prev">‹</a>-->
+        <!--<a class="carousel-control right" href="#circleContent" data-slide="next">›</a>-->
+    </div>
+
+    <!--Login Frame-->
+    <div id="login_form" style="width: 22%; height: 280px;  position: relative; z-index: 5; left: 40%; top: 30%;">
+            <div class="well"  style="border-right:1px solid #ddd; width: 100%; height: 100%; opacity: 0.8;">
+                <div  style="margin-bottom:20px;">
+                    <h3>User Log In</h3>
+                </div>
+                <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="name" placeholder="User Name" aria-describedby="sizing-addon1" onblur="lcheckname()">
+                </div>
+                    <span id="nameinfo"></span>
+                </div>
+
+                <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="pass" placeholder="Password" aria-describedby="sizing-addon1" onblur="lcheckpass()">
+                </div>
+                    <span id="spass"></span>
+                </div>
+
+                <div style="margin-bottom: 15px">
+                <button type="submit" class="btn  btn-success  col-md-5" style="float: left;" onclick="lcheckall()">
+                    Log in
+                </button>
+                <button type="submit" id="register_btn1" class="btn  btn-success  col-md-5" style="float: right;" >
+                    Sign up
+                </button>
+            </div>
+            </div>
+    </div>
+
+    <!--Register Form-->
+    <div id="register_form" style=" width: 22%; height: 420px;  position: relative; z-index: 5; left: 40%; top: 30%;">
+        <div class="well"  style="border-right:1px solid #ddd; width: 100%; height: 100%; opacity: 0.8;">
+            <div  style="margin-bottom:20px;">
+                <h3>Create An Account</h3>
+            </div>
+            <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon" ><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="iname" placeholder="User Name" aria-describedby="sizing-addon1" onblur="checkName()">
+                </div>
+                <span id="userinfor"></span>
+            </div>
+
+            <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="ipass" placeholder="Password" aria-describedby="sizing-addon1" onblur="checkpass()">
+                </div>
+                <span id="passwordinfo"></span>
+            </div>
+
+            <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon" ><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="icpass" placeholder="Check Password" aria-describedby="sizing-addon1" onblur="checkPw()">
+                </div>
+                <span id="passwordinf"></span>
+            </div>
+
+            <div >
+                <div class="input-group input-group-md" style="margin-bottom: 15px">
+                    <span class="input-group-addon" ><i class="glyphicon glyphicon-envelope"></i></span>
+                    <input type="email" class="form-control" id="imail" placeholder="Mail" aria-describedby="sizing-addon1" onblur="checkMail()">
+                </div>
+                <span id="mailinfo"></span>
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <input type="submit" class="btn btn-success pull-right" value="Sign Up " onclick="rCheckAll()"/>
+                <input type="submit" class="btn btn-info pull-left" id="back_btn" value="Back" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--footer-->
+<div style=" position: absolute; right: 0%; bottom: 0%;  z-index: 5;">
+<footer>
+    <p style="color: aliceblue;">Facebook Company &copy; 2017</p>
+</footer>
+</div>
+
+<script>
+    function checkName(){
+        var user=document.getElementById("iname").value;
+        var userinfor=document.getElementById("userinfor");
+        if(user.length<6 || user.length>20) {
+            userinfor.style.color = "red";
+            userinfor.innerHTML = "Name length range is 6-20!";
+            return false
+        }
+        else {
+            userinfor.innerHTML="";
+            return true
+        }
+    }
+    function checkpass() { //含有字母和数字，密码长度6-16位
+        var pass=document.getElementById("ipass").value;
+        var pinfo=document.getElementById("passwordinfo");
+        var r=pass.match(/[a-z,0-9]/g)
+        if(pass.length<6 || pass.length>16){
+            pinfo.style.color="red";
+            pinfo.innerHTML="Password length is 6-16!";
+            return false
+        }
+        else if(!r){
+            pinfo.style.color="red";
+            pinfo.innerHTML="Password must are character or number!";
+            return false
+        }
+        else{
+            pinfo.innerHTML="";
+            return true
+
+        }
+    }
+    function checkPw(){
+        var p=document.getElementById("ipass").value;
+        var pass=document.getElementById("icpass").value;
+        var pinfo=document.getElementById("passwordinf");
+        if(pass!==p){
+            pinfo.style.color="red";
+            pinfo.innerHTML="Please input the same password!";
+            return false
+        }
+        else if(!pass){
+            pinfo.style.color="red";
+            pinfo.innerHTML="Please input password!";
+            return false
+        }
+        else {
+            pinfo.innerHTML="";
+            return true
+        }
+    }
+    function checkMail(){
+        var pass=document.getElementById("imail").value;
+        var pinfo=document.getElementById("mailinfo");
+        var r=pass.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/g)
+        if(!r){
+            pinfo.style.color="red";
+            pinfo.innerHTML="Please input right mail!";
+            return false
+        }
+        else{
+            pinfo.innerHTML="";
+            return true
+        }
+    }
+    function rCheckAll() {
+        if(checkMail() && checkName () && checkpass() && checkPw() ){
+            localStorage.setItem("Username",document.getElementById("iname").value)
+            localStorage.setItem("Password",document.getElementById("ipass").value)
+            localStorage.setItem("Mail",document.getElementById("imail").value)
+            alert("Register success!!!")
+            $("#register_form").css("display", "none");
+            $("#login_form").css("display", "block");
+        }
+        else{
+            alert("Please input the right information!!!")
+        }
+    }
+    function lcheckname() {
+        var user=document.getElementById("name").value;
+        var nameinfo=document.getElementById("nameinfo")
+        if(!user){
+            nameinfo.style.color = "red";
+            nameinfo.innerHTML = "Please input your name!";
+            return false
+        }
+        else {
+            nameinfo.innerHTML = "";
+            return true
+        }
+    }
+
+    function lcheckpass() {
+        var user=document.getElementById("pass").value;
+        var nameinfo=document.getElementById("spass")
+        if(!user){
+            nameinfo.style.color = "red";
+            nameinfo.innerHTML = "Please input your password!";
+            return false
+        }
+        else {
+            nameinfo.innerHTML = "";
+            return true
+        }
+    }
+    function lcheckall() {
+        if(lcheckname() && lcheckpass()){
+            if(!localStorage.getItem("Username")){
+                alert("No register data found! Please register first!")
+            }
+            else if(document.getElementById("name").value==localStorage.getItem("Username") && document.getElementById("pass").value==localStorage.getItem("Password")){
+                window.close("http://localhost:63342/WebTest/.idea/MyProject/Project1.html")
+                window.open("http://localhost:63342/WebTest/.idea/MyProject/Project2.html")
+            }
+            else {
+                alert("User Name or Password invalid!")
+            }
+        }
+        else {
+            alert("Please input the right info!")
+        }
+    }
+
+//    reg1 && back button implemetation
+    $(function() {
+        $("#register_btn1").click(function() {
+            document.getElementById("userinfor").innerHTML=""
+            document.getElementById("passwordinf").innerHTML=""
+            document.getElementById("passwordinfo").innerHTML=""
+            document.getElementById("mailinfo").innerHTML=""
+            $("#register_form").css("display", "block");
+            $("#login_form").css("display", "none");
+        });
+        $("#back_btn").click(function() {
+            document.getElementById("nameinfo").innerHTML=""
+            document.getElementById("spass").innerHTML=""
+            $("#register_form").css("display", "none");
+            $("#login_form").css("display", "block");
+        });
+    });
+</script>
+</body>
+</html>
